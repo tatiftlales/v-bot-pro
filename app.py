@@ -7,13 +7,13 @@ app = Flask(__name__)
 VERIFY_TOKEN = "tatiftlales2011"
 PAGE_ACCESS_TOKEN = "EAAReV10vOr4BO7dZCrqM5lZCEbtf0D8M6akdB7uT7iwpibuleGOgOO4eHYiQy3ImdV8QNRD0iO2dnVBZB0s9DG3HvGq0yRVqx1q9iSGwR2JnFit4qrmZCgabVB8kEm1kOPmzIVu6SBktZBnxFqw3k4BqYDmVBpNoi7SC8E2K1XKZBkbBP41HVuZBNEgDUN10OTmWa4yujxsNGNwjsf7n7LB3ZCwe4QrVOJAKqZBMZD"
 
-@app.route("/", methods=['GET'])
+@app.route("/webhook", methods=['GET'])
 def verify():
     if request.args.get("hub.verify_token") == VERIFY_TOKEN:
         return request.args.get("hub.challenge")
     return "خطأ في التحقق"
 
-@app.route("/", methods=['POST'])
+@app.route("/webhook", methods=['POST'])
 def webhook():
     data = request.get_json()
     for entry in data['entry']:
